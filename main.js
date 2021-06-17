@@ -17,3 +17,17 @@ var classifier = ml5.imageClassifier("https://teachablemachine.withgoogle.com/mo
 function getModel () {
     console.log("Model Uploaded")
 }
+
+function identify() {
+    image=document.getElementById("capturedimage")
+    classifier.classify(image, gotResult)
+}
+function gotResult(error, result) {
+    if (error) {
+        console.error(error)
+    }else {
+       document.getElementById("accuracyResult").innerHTML = result[0].confidence
+       document.getElementById("personResult").innerHTML = result[0].label
+       
+    }
+}
